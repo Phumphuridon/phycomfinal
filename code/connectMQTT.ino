@@ -20,9 +20,6 @@ unsigned long last_publish;
 
 void setup(){
   Serial.begin(9600);
-  
-  for (int p=2; p<14; p++)
-    pinMode(p, p%2 ? INPUT : OUTPUT);
 
   setupWiFi();
   connectToMQTT();
@@ -30,9 +27,6 @@ void setup(){
 
 void loop(){
   mqtt.loop();
-  
-  sentValue(getTemp(), "66070162/temp");
-  sentValue(getPotentialmeter(), "66070162/light");
 
   delay(1000);
 }
@@ -58,18 +52,6 @@ void sentValue(double value, char *publishTopic){
   char buffer[30];
   String((int) value).toCharArray(buffer, 30);
   sentToMQTT(buffer, publishTopic);
-}
-
-float getTemp(){
-  int sensorValue = analogRead(A0);
-  float voltage = sensorValue * (5.0/1023);
-  float temp = voltage * 100;
-  return temp;
-}
-
-int getPotentialmeter(){
-  int sensorValue = analogRead(A1);
-  return sensorValue;
 }
 
 void connectToMQTT(){
