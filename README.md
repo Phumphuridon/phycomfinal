@@ -1,6 +1,7 @@
 # Physical Computing
 
 ## Tae's Github
+https://github.com/TaeTanakrit0089/PhysicalComputing-167
 https://www.it.kmitl.ac.th/~it65070089/phypro/
 
 ## Components
